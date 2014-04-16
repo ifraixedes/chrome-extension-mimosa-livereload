@@ -1,0 +1,28 @@
+{
+  "manifest_version": 2,
+  "name": "mimosa-livereload",
+  "version": "0.0.0",
+  "author": "Ivan Fraixedes <ivan@fraixed.es> (http://ivan.fraixed.es)",
+  "description": "This extension auto-reload the tab where it is enabled when a notification is received from mimosa web framework server (http://mimosa.io)",
+  "icons": {
+    "16": "img/flame-mixitup-16.png",
+    "48": "img/flame-mixitup-48.png",
+    "128": "img/mimosa-logo-128.png"
+  },
+  "browser_action": {
+    "default_icon": {
+      "19": "img/flame-mixitup-19.png",
+      "38": "img/flame-mixitup-38.png"
+    },
+    "default_title": "Mimosa auto-reload"
+  },
+  "content_scripts": [
+    {
+      "matches": ["http://*/*"],
+      "js": [
+        "scripts/socket.io.js",
+        "scripts/live-reload.js"
+      ]
+    }
+  ]
+}
