@@ -16,13 +16,10 @@
     },
     "default_title": "Mimosa auto-reload"
   },
-  "content_scripts": [
-    {
-      "matches": ["http://*/*"],
-      "js": [
-        "scripts/socket.io.js",
-        "scripts/live-reload.js"
-      ]
-    }
-  ]
+  "permissions": [
+    "activeTab"
+  ],
+  "background": { 
+    "scripts": ["scripts/switcher.js"]
+  }
 }
