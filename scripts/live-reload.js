@@ -1,28 +1,39 @@
-(function() {
-  var scripts = document.getElementsByTagName("script");
-  var socket = io.connect(
-    (function() { for(var i=0;i<scripts.length;i++) { if(scripts[i].src && scripts[i].src.indexOf("/socket.io.js"))
-      return (/^([^#]*?:\/\/.*?)(\/.*)$/.exec(scripts[i].src) || [])[1];
-    } })()
-  );
-  socket.on('page',       reloadPage)
-        .on('css',        reloadCss)
-        .on('reconnect',  reloadPage);
-
+function enableLiveReload(tab, callback) {
+  var tabId = tab.id;
+  var url = /(https?:\/\/[\w-.:]+)/.exec(tab.url);
+  var socket;
+  
+  if (url) {
+    socket = io.connect(url[0]);
+    socket.on('page', reloadPage);
+    socket.on('css', reloadPage);
+    callback({ 
+      tabId: tabId,
+      disable: disable
+    });
+  } else {
+    callback(null);
+  }
+    
   function reloadPage() {
-    location.reload();
+    chrome.tabs.reload(tabId, function () {
+      // it is a hack because to restore the
+      // browser action icon after the tab is reloaded,
+      // because it comes back to the intial state.
+      // The timeout is the second hack, because without it
+      // setIcon doesn't work
+      setTimeout(function () {
+        chrome.browserAction.setIcon({ 
+          path: 'img/flame-from-logo-38.png',
+          tabId: tabId
+        });
+      }, 500);
+    });
   }
 
-  function reloadCss() {
-    var links = document.getElementsByTagName("link");
-    for (var i = 0; i < links.length; i++) {
-      var tag = links[i];
-      if (tag.rel.toLowerCase().indexOf("stylesheet") >= 0 && tag.href) {
-        var newHref = tag.href.replace(/(&|%5C?)\d+/, "");
-        tag.href = newHref + (newHref.indexOf("?") >= 0 ? "&" : "?") + (new Date().valueOf());
-      }
-    }
-    console.log('CSS updated');
+  function disable(done) {
+    socket.removeAllListeners('page');
+    socket.removeAllListeners('css');
+    done(tabId);
   }
-
-})();
+};
