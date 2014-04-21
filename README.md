@@ -6,7 +6,7 @@ With this extension you don't need to add to your web pages (probably in the lay
 
 You can find the extension in [chrome web store](https://chrome.google.com/webstore/detail/mimosa-livereload/ilabemofohmfjciemambcomieohbchip)
 
-## FAQ
+### FAQ
 
 * Do I need to use this extension to use mimosa livereload?
 
@@ -30,12 +30,12 @@ You can find the extension in [chrome web store](https://chrome.google.com/webst
 
   Absolutely no, if you want to reload the pages in any browser or it doesn't provide you any advantage. Mimosa livereload native functionality is awesome and this extension doesn't overcome it.
 
-## Acknowledgements
+### Acknowledgements
 
 [David Bashford](https://github.com/dbashford/) creator of [Mimosa web framework](http://mimosa.io) and all its collaborators.
 
 [Guillermo Rauch](http://devthought.com/) creator of [socket.io](http://socket.io) and all its collaborators.
 
 
-## License
+### License
 Just MIT! (read the LICENSE file for more details).
