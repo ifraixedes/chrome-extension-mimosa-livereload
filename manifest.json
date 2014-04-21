@@ -3,7 +3,7 @@
   "name": "mimosa-livereload",
   "version": "0.0.1",
   "author": "Ivan Fraixedes <ivan@fraixed.es> (http://ivan.fraixed.es)",
-  "description": "This extension auto-reload the tab where it is enabled when a notification is received from mimosa web framework server (http://mimosa.io)",
+  "description": "Livereload for mimosa web framework server (http://mimosa.io)",
   "icons": {
     "16": "img/flame-from-logo-16.png",
     "48": "img/flame-from-logo-48.png",
