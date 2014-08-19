@@ -4,7 +4,7 @@ function enableLiveReload(tab, callback) {
   var socket;
 
   if (url) {
-    socket = io.connect(url[0]);
+    socket = io.connect(url[1]);
     socket.on('page', reloadPage);
     socket.on('css', reloadPage);
     callback({
